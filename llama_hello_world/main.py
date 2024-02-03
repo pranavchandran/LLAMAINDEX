@@ -5,9 +5,12 @@ Version: 1.0.0
 """
 from typing import List
 import os
-
+# dotenv
+from dotenv import load_dotenv
 from llama_index import download_loader, VectorStoreIndex
 from llama_index.readers.web import SimpleWebPageReader
+
+load_dotenv()
 
 
 def main(url: str) -> None:
@@ -20,6 +23,7 @@ def main(url: str) -> None:
     query_engine = index.as_query_engine()
     response = query_engine.query("What is LLama Index?")
     print(response)
+
 
 if __name__ == '__main__':
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY")
